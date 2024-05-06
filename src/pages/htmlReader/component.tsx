@@ -11,6 +11,7 @@ import Viewer from "../../containers/htmlViewer";
 import { Tooltip } from "react-tooltip";
 import RecordLocation from "../../utils/readUtils/recordLocation";
 import "./index.css";
+import {isMobile} from "react-device-detect";
 declare var window: any;
 
 let lock = false; //prevent from clicking too fasts
@@ -152,8 +153,9 @@ class Reader extends React.Component<ReaderProps, ReaderState> {
         this.state.isOpenBottomPanel ||
         this.state.isOpenRightPanel,
     };
+    const containerCs = `viewer${isMobile ? " is-mobile" : ""}`
     return (
-      <div className="viewer">
+      <div className={containerCs}>
         <Tooltip id="my-tooltip" style={{ zIndex: 25 }} />
         {StorageUtil.getReaderConfig("isHidePageButton") !== "yes" && (
           <>
@@ -183,12 +185,25 @@ class Reader extends React.Component<ReaderProps, ReaderState> {
             </div>
           </>
         )}
+        {isMobile && StorageUtil.getReaderConfig("isHideMenuButton") !== "yes" && (
+          <div
+            className="reader-nav-icon-container"
+            onClick={() => {
+              this.handleEnterReader("left");
+            }}
+          >
+            目录
+          </div>
+        )}
         {StorageUtil.getReaderConfig("isHideMenuButton") !== "yes" && (
           <div
             className="reader-setting-icon-container"
             onClick={() => {
-              this.handleEnterReader("left");
               this.handleEnterReader("right");
+              if (isMobile) {
+                return
+              }
+              this.handleEnterReader("left");
               this.handleEnterReader("bottom");
               this.handleEnterReader("top");
             }}

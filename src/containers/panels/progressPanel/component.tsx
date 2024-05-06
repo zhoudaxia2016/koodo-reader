@@ -4,6 +4,7 @@ import { Trans } from "react-i18next";
 import { ProgressPanelProps, ProgressPanelState } from "./interface";
 
 import StorageUtil from "../../../utils/serviceUtils/storageUtil";
+import {isMobile} from "react-device-detect";
 declare var window: any;
 class ProgressPanel extends React.Component<
   ProgressPanelProps,
@@ -183,8 +184,8 @@ class ProgressPanel extends React.Component<
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "90%",
-            marginLeft: "5%",
+            width: isMobile ? "70%" : "90%",
+            marginLeft: isMobile ? "15%" : "5%",
           }}
         >
           <div
