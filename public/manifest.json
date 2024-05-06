@@ -1,0 +1,16 @@
+{
+  "name": "Koodo Reader",
+  "short_name": "Koodo",
+  "display": "fullscreen",
+  "scope": "/koodo-reader/",
+  "start_url": "/koodo-reader/",
+  "theme_color": "#8888ff",
+  "background_color": "#aaaaff",
+  "icons": [
+    {
+      "src": "/assets/icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
