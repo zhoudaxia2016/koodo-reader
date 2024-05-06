@@ -24,8 +24,11 @@ import { scrollContents } from "../../utils/commonUtil";
 declare var window: any;
 let lock = false; //prevent from clicking too fasts
 
+const slideThreshold = 3
+
 class Viewer extends React.Component<ViewerProps, ViewerState> {
   lock: boolean;
+  refPage = React.createRef<HTMLDivElement>()
   constructor(props: ViewerProps) {
     super(props);
     this.state = {
@@ -265,6 +268,40 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
       position.page
     );
   };
+  wheelTimes = {
+    top: 0,
+    bottom: 0,
+  }
+  handleWheel = (e) => {
+    const {readerMode} = this.state
+    const page = this.refPage.current
+    if (!page || readerMode !== 'scroll') {
+      return
+    }
+    const scrollHeight = page.scrollHeight
+    const scrollTop = page.scrollTop
+    const clientHeight = page.clientHeight
+    const {rendition} = this.props.htmlBook
+    if (e.deltaY > 0 && scrollTop + clientHeight >= scrollHeight - 1) {
+      this.wheelTimes.bottom ++
+      setTimeout(() => {
+        this.wheelTimes.bottom = 0
+      }, 200)
+      if (this.wheelTimes.bottom > slideThreshold) {
+        rendition.next()
+        this.wheelTimes.bottom = 0
+      }
+    } else if (e.deltaY < 0 && scrollTop === 0) {
+      this.wheelTimes.top ++
+      setTimeout(() => {
+        this.wheelTimes.top = 0
+      }, 200)
+      if (this.wheelTimes.top > slideThreshold) {
+        rendition.prev()
+        this.wheelTimes.top = 0
+      }
+    }
+  }
   handleBindGesture = () => {
     let doc = getIframeDoc();
     if (!doc) return;
@@ -291,6 +328,7 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
       var rect = doc!.getSelection()!.getRangeAt(0).getBoundingClientRect();
       this.setState({ rect });
     });
+    doc.addEventListener("wheel", this.handleWheel)
   };
   render() {
     return (
@@ -330,6 +368,7 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
           />
         )}
         <div
+          ref={this.refPage}
           className={
             this.state.readerMode === "scroll"
               ? "html-viewer-page scrolling-html-viewer-page"
