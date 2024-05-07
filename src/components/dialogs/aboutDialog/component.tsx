@@ -1,7 +1,7 @@
 import React from "react";
 import { Trans } from "react-i18next";
 import { AboutDialogProps, AboutDialogState } from "./interface";
-import { isElectron } from "react-device-detect";
+import { isElectron, isMobile } from "react-device-detect";
 import { openExternalUrl } from "../../../utils/serviceUtils/urlUtil";
 import toast from "react-hot-toast";
 import {
@@ -37,7 +37,7 @@ class AboutDialog extends React.Component<AboutDialogProps, AboutDialogState> {
           onMouseEnter={() => {
             this.props.handleAbout(true);
           }}
-          style={{ left: "495px" }}
+          style={isMobile ? {} : { left: "495px" }}
         >
           <ul className="sort-by-category">
             <li

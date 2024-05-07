@@ -7,7 +7,7 @@ import StorageUtil from "../../utils/serviceUtils/storageUtil";
 import UpdateInfo from "../../components/dialogs/updateDialog";
 import { restore } from "../../utils/syncUtils/restoreUtil";
 import { backup } from "../../utils/syncUtils/backupUtil";
-import { isElectron } from "react-device-detect";
+import { isElectron, isMobile } from "react-device-detect";
 import { syncData } from "../../utils/syncUtils/common";
 import toast from "react-hot-toast";
 import { Trans } from "react-i18next";
@@ -213,15 +213,18 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         className="header"
         style={this.props.isCollapsed ? { marginLeft: "40px" } : {}}
       >
-        <div
-          className="header-search-container"
-          style={this.props.isCollapsed ? { width: "369px" } : {}}
-        >
-          <SearchBox />
-        </div>
+        {
+          !isMobile &&
+          <div
+            className="header-search-container"
+            style={this.props.isCollapsed ? { width: "369px" } : {}}
+          >
+            <SearchBox />
+          </div>
+        }
         <div
           className="setting-icon-parrent"
-          style={this.props.isCollapsed ? { marginLeft: "430px" } : {}}
+          style={!isMobile && this.props.isCollapsed ? { marginLeft: "430px" } : {}}
         >
           <div
             className="setting-icon-container"

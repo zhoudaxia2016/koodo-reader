@@ -22,6 +22,7 @@ import { Toaster } from "react-hot-toast";
 import DetailDialog from "../../components/dialogs/detailDialog";
 import FeedbackDialog from "../../components/dialogs/feedbackDialog";
 import { Tooltip } from "react-tooltip";
+import {isMobile} from "react-device-detect";
 class Manager extends React.Component<ManagerProps, ManagerState> {
   timer!: NodeJS.Timeout;
   constructor(props: ManagerProps) {
@@ -78,9 +79,10 @@ class Manager extends React.Component<ManagerProps, ManagerState> {
   };
   render() {
     let { books } = this.props;
+    const containerCs = `manager${isMobile ? ' is-mobile' : ''}`
     return (
       <div
-        className="manager"
+        className={containerCs}
         onDragEnter={() => {
           !this.props.dragItem && this.handleDrag(true);
           (

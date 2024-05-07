@@ -168,3 +168,11 @@
   margin-left: 15px;
   float: left;
 }
+.is-mobile {
+  .setting-icon-parrent {
+    margin-left: 20px;
+  }
+  .setting-icon-container {
+    margin-left: 0;
+  }
+}
