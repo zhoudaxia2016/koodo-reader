@@ -2,7 +2,8 @@
   "name": "Koodo Reader",
   "short_name": "Koodo",
   "display": "standalone",
-  "start_url": "/",
+  "scope": "/koodo-reader/",
+  "start_url": "/koodo-reader/",
   "theme_color": "#8888ff",
   "background_color": "#aaaaff",
   "icons": [
