@@ -1,5 +1,5 @@
 import React from "react";
-import "./header.css";
+import "./header.less";
 import SearchBox from "../../components/searchBox";
 import ImportLocal from "../../components/importLocal";
 import { HeaderProps, HeaderState } from "./interface";

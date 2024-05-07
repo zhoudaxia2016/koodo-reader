@@ -1,6 +1,6 @@
 //排序弹窗
 import React from "react";
-import "./sortDialog.css";
+import "./sortDialog.less";
 import SortUtil from "../../../utils/readUtils/sortUtil";
 import { Trans } from "react-i18next";
 import { SortDialogProps, SortDialogState } from "./interface";

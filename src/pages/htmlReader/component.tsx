@@ -10,7 +10,7 @@ import ReadingTime from "../../utils/readUtils/readingTime";
 import Viewer from "../../containers/htmlViewer";
 import { Tooltip } from "react-tooltip";
 import RecordLocation from "../../utils/readUtils/recordLocation";
-import "./index.css";
+import "./index.less";
 import {isMobile} from "react-device-detect";
 declare var window: any;
 
