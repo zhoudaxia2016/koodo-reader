@@ -2,7 +2,7 @@
   "name": "Koodo Reader",
   "short_name": "Koodo",
   "display": "fullscreen",
-  "scope": "https://zhoudaxia2016.github.io/koodo-reader/",
+  "scope": "/koodo-reader/",
   "start_url": "/koodo-reader/",
   "theme_color": "#8888ff",
   "background_color": "#aaaaff",
