@@ -1,7 +1,7 @@
 {
   "name": "Koodo Reader",
   "short_name": "Koodo",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/koodo-reader/",
   "start_url": "/koodo-reader/",
   "theme_color": "#8888ff",
