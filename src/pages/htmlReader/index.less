@@ -170,6 +170,16 @@
   transition: transform 0.5s ease;
   z-index: 15;
 }
+.is-mobile {
+  .navigation-panel-container,
+  .setting-panel-container {
+    height: calc(100vh - 100px);
+  }
+  .progress-panel-container {
+    top: unset;
+    bottom: 0;
+  }
+}
 .navigation-panel-container {
   width: 299px;
   height: 100vh;

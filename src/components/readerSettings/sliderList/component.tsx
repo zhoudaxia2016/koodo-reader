@@ -4,6 +4,7 @@ import { SliderListProps, SliderListState } from "./interface";
 import "./sliderList.css";
 import StorageUtil from "../../../utils/serviceUtils/storageUtil";
 import BookUtil from "../../../utils/fileUtils/bookUtil";
+import {isMobile} from "react-device-detect";
 class SliderList extends React.Component<SliderListProps, SliderListState> {
   constructor(props: SliderListProps) {
     super(props);
@@ -133,7 +134,7 @@ class SliderList extends React.Component<SliderListProps, SliderListState> {
           />
           <span style={{ marginLeft: "10px" }}>{this.state.value}</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div style={{ display: isMobile ? "none" : "flex", justifyContent: "space-around" }}>
           <span className="ultra-small-size">{this.props.minLabel}</span>
           <div className="font-size-selector">
             <input
