@@ -20,6 +20,7 @@ import { renderHighlighters } from "../../utils/serviceUtils/noteUtil";
 import Note from "../../model/Note";
 import PageWidget from "../../containers/pageWidget";
 import { scrollContents } from "../../utils/commonUtil";
+import {isMobile} from "react-device-detect";
 
 declare var window: any;
 let lock = false; //prevent from clicking too fasts
@@ -66,7 +67,9 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
     this.props.handleRenderBookFunc(this.handleRenderBook);
 
     window.addEventListener("resize", () => {
-      BookUtil.reloadBooks();
+      if (!isMobile) {
+        BookUtil.reloadBooks();
+      }
     });
   }
   handlePageWidth = () => {
