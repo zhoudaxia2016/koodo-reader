@@ -1,6 +1,6 @@
 import StorageUtil from "./storageUtil";
 import RecordLocation from "../readUtils/recordLocation";
-import { isElectron } from "react-device-detect";
+import { isElectron, isMobile } from "react-device-detect";
 import { getIframeDoc, getIframeWin } from "./docUtil";
 declare var window: any;
 declare var document: any;
@@ -147,6 +147,12 @@ export const bindHtmlEvent = (
     },
     false
   );
+  if (isMobile) {
+    doc.addEventListener('touchend', () => {
+      rendition.record();
+      handleLocation(key, rendition);
+    })
+  }
 
   window.addEventListener("keydown", async (event) => {
     if (lock) return;
