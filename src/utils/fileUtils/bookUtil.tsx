@@ -1,5 +1,5 @@
 import StorageUtil from "../serviceUtils/storageUtil";
-import { isElectron } from "react-device-detect";
+import { isElectron, isMobile } from "react-device-detect";
 
 import BookModel from "../../model/Book";
 import toast from "react-hot-toast";
@@ -185,11 +185,17 @@ class BookUtil {
         });
       }
     } else {
-      window.open(
-        `${window.location.href.split("#")[0]}#/${ref}/${book.key}?title=${
-          book.name
-        }&file=${book.key}`
-      );
+      if (isMobile) {
+        history.push({
+          pathname: `/${ref}/${book.key}?title=${book.name}&file=${book.key}`
+        });
+      } else {
+        window.open(
+          `${window.location.href.split("#")[0]}#/${ref}/${book.key}?title=${
+            book.name
+          }&file=${book.key}`
+        );
+      }
     }
   }
   static getBookUrl(book: BookModel) {
